@@ -3,7 +3,7 @@ const mobile_menu = document.querySelector('.header .nav-bar .nav-list ul');
 const menu_item = document.querySelectorAll('.header .nav-bar .nav-list ul li a');
 const header = document.querySelector('.header.container');
 const videos = document.querySelectorAll(".video");
-const urlArray = ["url(/img/SnakeGame.jpg)", "url(/img/BrickGame.jpg)", "url(/img/ETradeWebSite.jpg)", "url(/img/CVEditor.jpg)"];
+const urlArray = ["url(https://raw.githubusercontent.com/oguzhanmuratoglu/MyPortfolio/main/img/SnakeGame.jpg)", "url(https://raw.githubusercontent.com/oguzhanmuratoglu/MyPortfolio/main/img/BrickGame.jpg)", "url(https://raw.githubusercontent.com/oguzhanmuratoglu/MyPortfolio/main/img/ETradeWebSite.jpg)", "url(https://raw.githubusercontent.com/oguzhanmuratoglu/MyPortfolio/main/img/CVEditor.jpg)"];
 
 
 hamburger.addEventListener('click', () => {
@@ -77,7 +77,6 @@ function initializeReadMoreListener(e) {
 
 
 for(let index in videos){
-    debugger;
 
     if(index==="entries") break;
     let video =videos[index];
@@ -86,13 +85,13 @@ for(let index in videos){
 
 $(document).ready(function(){
 
-    var figure = $(".video").hover(hoverVideo, hideVideo);
+    $(".video").hover(hoverVideo, hideVideo);
 
-  function hoverVideo(e){
+  function hoverVideo(){
       $('video', this).get(0).play();
   }
 
-  function hideVideo(e){
+  function hideVideo(){
       $('video', this).get(0).pause();
   }
 
