@@ -1,20 +1,31 @@
-let MyData = {};
 let day =  "16";
 let month =  "04";
 let year =  "1999";
 get();
 
+
 function get(){
-    axios.get("http://localhost:5000/api/get").then(res=>{
-        MyData = res.data;
-        setMyInformation(MyData.person);
-        setMySkills(MyData.skills);
-        setMySocialMedias(MyData.socialMedias);
-        setMyworkExperiences(MyData.workExperiences);
-        setMyEducations(MyData.educations);
-        setMyReferences(MyData.references);
-        setMyCertifications(MyData.certifications);
-    });
+    const storedData = localStorage.getItem('MyData');
+    debugger;
+        if (storedData) {
+            let convertedData = JSON.parse(storedData);
+    
+            setMyInformation(convertedData.person);
+            setMySkills(convertedData.skills);
+            setMyWorkExperiences(convertedData.workExperiences);
+            setMyEducations(convertedData.educations);
+            setMyReferences(convertedData.references);
+            setMySocialMedias(convertedData.socialMedias);
+            setMyCertifications(convertedData.certifications);
+        } else {
+            setMyInformation(MyData.person);
+            setMySkills(MyData.skills);
+            setMyWorkExperiences(MyData.workExperiences);
+            setMyEducations(MyData.educations);
+            setMyReferences(MyData.references);
+            setMySocialMedias(MyData.socialMedias);
+            setMyCertifications(MyData.certifications);
+        }
 }
 
 function setMySkills(skills){
@@ -51,7 +62,7 @@ function setMySocialMedias(socialMedias){
     document.getElementById("socialMedias").innerHTML=createSocialMediaHtmlTags(socialMedias);
 }
 
-function setMyworkExperiences(workExperiences){
+function setMyWorkExperiences(workExperiences){
 
     document.getElementById("workExperiences").innerHTML=createworkExperienceHtmlTags(workExperiences);
 }

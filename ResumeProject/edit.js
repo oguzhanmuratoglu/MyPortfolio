@@ -1,4 +1,3 @@
-let MyData = person;
 let UpdatedMyData = {};
 let day =  "16";
 let month =  "04";
@@ -15,16 +14,23 @@ let id3 =1;
 let id4 =1;
 let id5 =1;
 let id6 =1;
-console.log(person);
-person.name = "sadhasd";
-console.log(person);
 get();
 
 
 function get(){
-    axios.get("http://localhost:5000/api/get").then(res=>{
-        MyData = res.data;
 
+    const storedData = localStorage.getItem('MyData');
+    if (storedData) {
+        let convertedData = JSON.parse(storedData);
+
+        setMyInformation(convertedData.person);
+        setMySkills(convertedData.skills);
+        setMyWorkExperiences(convertedData.workExperiences);
+        setMyEducations(convertedData.educations);
+        setMyReferences(convertedData.references);
+        setMySocialMedias(convertedData.socialMedias);
+        setMyCertifications(convertedData.certifications);
+    } else {
         setMyInformation(MyData.person);
         setMySkills(MyData.skills);
         setMyWorkExperiences(MyData.workExperiences);
@@ -32,9 +38,8 @@ function get(){
         setMyReferences(MyData.references);
         setMySocialMedias(MyData.socialMedias);
         setMyCertifications(MyData.certifications);
-
-
-    });
+    }
+        
 }
 
 
@@ -357,7 +362,6 @@ function deleteSkillDetail(id){
 
     function setMyCertifications(certifications){
         document.getElementById("certification").innerHTML = createCertificationsHtmlTags(certifications);
-        document.getElementById(`ce-${ìd}`).remove();
     }
 
     function createCertificationsHtmlTags(certifications){
@@ -713,15 +717,17 @@ function deleteSkillDetail(id){
 
 
      
-           axios.post("http://localhost:5000/api/set", UpdatedMyData)
-            .then((response) => {
-              alert("Bilgiler başarıyla güncellendi!");
-            })
-            .catch((error) => {
-              alert("Güncelleme sırasında bir hata oluştu: " + error.message);
-            });
+        //    axios.post("http://localhost:5000/api/set", UpdatedMyData)
+        //     .then((response) => {
+        //       alert("Bilgiler başarıyla güncellendi!");
+        //     })
+        //     .catch((error) => {
+        //       alert("Güncelleme sırasında bir hata oluştu: " + error.message);
+        //     });
 
-            
+        localStorage.setItem('MyData', JSON.stringify(UpdatedMyData));
+
+        alert("Bilgiler başarıyla güncellendi!");    
 }
 
 function removeTextBeforeHyphen(inputString) {

@@ -140,3 +140,13 @@ let certifications = [
 
     },
 ]
+
+let MyData = {
+    person : person,
+    skills : skills,
+    socialMedias : socialMedias,
+    workExperiences : workExperiences,
+    educations : educations,
+    references : references,
+    certifications : certifications
+}
